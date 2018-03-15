@@ -66,8 +66,10 @@ services:
       - redis
 
   sidekiq:
-    build: .
-    image: tootsuite/mastodon
+    build: 
+      context: .
+      dockerfile: Dockerfile-sidekiq
+    image: tootsuite/mastodon-sidekiq
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq -q default -q mailers -q pull -q push
